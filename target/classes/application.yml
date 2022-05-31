@@ -1,0 +1,39 @@
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:mysql://121.196.96.125:3306/lcput?serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  application:
+    name: lcput-user
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 121.196.96.125:8848
+        namespace: b5ff567a-7165-4d1c-8e26-53c2238f9f1d
+        register-enabled: true
+
+
+  redis:
+    password: admin
+    sentinel:
+      nodes:
+        - 121.196.96.125:26379
+        - 121.196.96.125:26380
+        - 121.196.96.125:26381
+      master: mymaster
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  session:
+    store-type: redis
+
+mybatis:
+  mapper-locations: mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
